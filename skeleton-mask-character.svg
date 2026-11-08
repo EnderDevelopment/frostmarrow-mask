@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hooded character with a split-color skeleton mask</title>
+  <desc id="desc">A character wearing a black hooded sweatshirt, black pants with grey knee pads, grey boots, blue eyes, brown hair, and a skeleton mask split ice blue and maroon.</desc>
+  <defs>
+    <linearGradient id="hoodShade" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#242833"/><stop offset="1" stop-color="#090b10"/></linearGradient>
+    <linearGradient id="iceMask" x1="0" x2="1"><stop offset="0" stop-color="#b9f6ff"/><stop offset="1" stop-color="#5ecfe7"/></linearGradient>
+    <linearGradient id="maroonMask" x1="0" x2="1"><stop offset="0" stop-color="#8e263b"/><stop offset="1" stop-color="#4b1426"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#030509" flood-opacity=".55"/></filter>
+    <clipPath id="maskShape"><path d="M214 185 Q350 112 486 185 L475 350 Q461 432 350 474 Q239 432 225 350Z"/></clipPath>
+  </defs>
+
+  <rect width="700" height="900" fill="#11151c"/>
+  <ellipse cx="350" cy="842" rx="220" ry="28" fill="#06080c" opacity=".8"/>
+
+  <g filter="url(#shadow)">
+    <!-- Hood and hair -->
+    <path d="M175 311 Q150 138 350 77 Q550 138 525 311 L487 407 L213 407Z" fill="#080a0e" stroke="#303743" stroke-width="8"/>
+    <path d="M193 289 Q184 163 350 112 Q516 163 507 289 L464 370 L236 370Z" fill="url(#hoodShade)"/>
+    <path d="M235 188 Q251 126 350 124 Q449 126 465 188 L447 226 L419 204 L397 239 L370 204 L341 238 L314 201 L282 230 L260 197Z" fill="#6b3e27"/>
+    <path d="M268 152 Q299 119 348 117" fill="none" stroke="#925936" stroke-width="10" stroke-linecap="round" opacity=".7"/>
+
+    <!-- Split skeleton mask -->
+    <g clip-path="url(#maskShape)">
+      <rect x="200" y="110" width="150" height="380" fill="url(#iceMask)"/>
+      <rect x="350" y="110" width="150" height="380" fill="url(#maroonMask)"/>
+      <path d="M350 105 V485" stroke="#e9fbff" stroke-width="4" opacity=".35"/>
+      <ellipse cx="350" cy="232" rx="128" ry="118" fill="#ffffff" opacity=".08"/>
+      <!-- eye sockets -->
+      <path d="M246 251 Q285 215 327 245 Q318 288 275 296 Q249 287 246 251Z" fill="#080d14"/>
+      <path d="M374 245 Q415 215 454 251 Q451 287 425 296 Q382 288 374 245Z" fill="#080d14"/>
+      <!-- glowing blue eyes -->
+      <path d="M266 257 Q286 240 309 253 Q295 276 273 278Z" fill="#55cfff"/>
+      <path d="M391 253 Q414 240 434 257 L427 278 Q405 276 391 253Z" fill="#55cfff"/>
+      <path d="M273 259 L302 258 M399 258 L428 259" stroke="#c1f5ff" stroke-width="5" stroke-linecap="round"/>
+      <!-- nasal cavity -->
+      <path d="M350 276 L330 318 L350 331 L370 318Z" fill="#090c12"/>
+      <!-- cheek vents and teeth -->
+      <path d="M254 335 L300 350 M249 358 L295 370 M446 335 L400 350 M451 358 L405 370" stroke="#141822" stroke-width="9" stroke-linecap="round"/>
+      <path d="M278 385 Q350 426 422 385 Q403 448 350 456 Q297 448 278 385Z" fill="#090c12"/>
+      <path d="M300 395 V433 M325 406 V447 M350 412 V452 M375 406 V447 M400 395 V433" stroke="#d9f9ff" stroke-width="6" opacity=".8"/>
+    </g>
+    <path d="M214 185 Q350 112 486 185 L475 350 Q461 432 350 474 Q239 432 225 350Z" fill="none" stroke="#d8e2ec" stroke-width="8"/>
+
+    <!-- Neck and hoodie -->
+    <path d="M289 440 L289 492 L350 528 L411 492 L411 440" fill="#1c2029" stroke="#080a0e" stroke-width="10"/>
+    <path d="M195 467 Q235 425 290 438 L350 510 L410 438 Q465 425 505 467 L555 682 L145 682Z" fill="#0a0c10" stroke="#303743" stroke-width="8"/>
+    <path d="M350 511 L350 680" stroke="#292e38" stroke-width="5"/>
+    <path d="M235 494 Q256 546 299 584 M465 494 Q444 546 401 584" fill="none" stroke="#353b46" stroke-width="7" opacity=".65"/>
+    <path d="M281 527 Q350 565 419 527 L410 600 Q350 627 290 600Z" fill="#141820"/>
+    <path d="M309 567 L391 567" stroke="#606c7b" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Arms and hands -->
+    <path d="M196 478 Q165 493 145 542 L104 665 Q99 691 123 700 L151 690 L208 570Z" fill="#0a0c10" stroke="#303743" stroke-width="8"/>
+    <path d="M504 478 Q535 493 555 542 L596 665 Q601 691 577 700 L549 690 L492 570Z" fill="#0a0c10" stroke="#303743" stroke-width="8"/>
+    <path d="M104 665 Q126 649 151 690 Q129 720 105 696Z M596 665 Q574 649 549 690 Q571 720 595 696Z" fill="#b77a50" stroke="#171a20" stroke-width="6"/>
+
+    <!-- Belt and pants -->
+    <path d="M145 666 L555 666 L543 713 L157 713Z" fill="#151922" stroke="#303743" stroke-width="7"/>
+    <rect x="325" y="670" width="50" height="40" rx="5" fill="#7e8894" stroke="#0a0c10" stroke-width="7"/>
+    <path d="M170 704 L320 704 L313 800 L170 800Z" fill="#090b0f" stroke="#303743" stroke-width="8"/>
+    <path d="M380 704 L530 704 L530 800 L387 800Z" fill="#090b0f" stroke="#303743" stroke-width="8"/>
+    <!-- Knee pads -->
+    <path d="M170 752 Q245 730 313 752 L311 815 Q242 840 170 815Z" fill="#7d8792" stroke="#b1bac3" stroke-width="5"/>
+    <path d="M387 752 Q455 730 530 752 L530 815 Q458 840 389 815Z" fill="#7d8792" stroke="#b1bac3" stroke-width="5"/>
+    <path d="M190 778 Q242 762 294 778 M406 778 Q458 762 510 778" fill="none" stroke="#58616c" stroke-width="7"/>
+
+    <!-- Boots -->
+    <path d="M168 801 L311 801 L326 836 Q326 858 298 862 L105 862 Q82 848 105 826Z" fill="#8b949c" stroke="#303743" stroke-width="8"/>
+    <path d="M389 801 L532 801 L595 826 Q618 848 595 862 L402 862 Q374 858 374 836Z" fill="#8b949c" stroke="#303743" stroke-width="8"/>
+    <path d="M120 833 L300 833 M400 833 L580 833" stroke="#c6cdd2" stroke-width="8" stroke-linecap="round"/>
+    <path d="M163 808 L292 808 M408 808 L537 808" stroke="#555e68" stroke-width="7"/>
+  </g>
+</svg>

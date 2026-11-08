@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transparent PNG Exporter</title>
+  <style>
+    body { margin: 0; padding: 32px; color: #202832; background: #f3f5f6; font: 16px/1.5 system-ui, sans-serif; }
+    main { max-width: 560px; margin: 8vh auto; padding: 24px; background: #fff; border: 1px solid #d8dee3; border-radius: 6px; }
+    h1 { margin-top: 0; font-size: 1.35rem; }
+    label { display: block; margin: 20px 0 8px; font-weight: 600; }
+    input, button { font: inherit; }
+    button { margin-top: 18px; padding: 9px 14px; color: white; background: #263b4a; border: 0; border-radius: 4px; cursor: pointer; }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    #status { min-height: 1.5em; color: #46525c; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Transparent PNG Exporter</h1>
+    <label for="source">Character SVG</label>
+    <input id="source" type="file" accept=".svg,image/svg+xml">
+    <div><button id="export" type="button" disabled>Download transparent PNG</button></div>
+    <p id="status" role="status">Choose skeleton-mask-character.svg to begin.</p>
+  </main>
+  <script>
+    const input = document.querySelector('#source');
+    const button = document.querySelector('#export');
+    const status = document.querySelector('#status');
+    let sourceSvg = null;
+
+    input.addEventListener('change', async () => {
+      sourceSvg = null;
+      button.disabled = true;
+      const file = input.files && input.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+        const svg = doc.documentElement;
+        if (svg.localName !== 'svg' || doc.querySelector('parsererror')) throw new Error('That file is not valid SVG.');
+        const viewBox = svg.viewBox.baseVal;
+        if (!viewBox.width || !viewBox.height) throw new Error('The SVG needs a non-empty viewBox.');
+        const background = svg.querySelector(':scope > rect[width="700"][height="900"]');
+        if (background && background.getAttribute('fill') === '#11151c') background.remove();
+        svg.querySelectorAll(':scope > ellipse').forEach((ellipse) => {
+          if (ellipse.getAttribute('cx') === '350' && ellipse.getAttribute('cy') === '842') ellipse.remove();
+        });
+        sourceSvg = new XMLSerializer().serializeToString(svg);
+        button.disabled = false;
+        status.textContent = 'Ready to export with a transparent background.';
+      } catch (error) {
+        status.textContent = error.message || 'Could not read that SVG.';
+      }
+    });
+
+    button.addEventListener('click', () => {
+      if (!sourceSvg) return;
+      const image = new Image();
+      const url = URL.createObjectURL(new Blob([sourceSvg], { type: 'image/svg+xml;charset=utf-8' }));
+      image.onload = () => {
+        const svg = new DOMParser().parseFromString(sourceSvg, 'image/svg+xml').documentElement;
+        const box = svg.viewBox.baseVal;
+        const scale = 2;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(box.width * scale);
+        canvas.height = Math.round(box.height * scale);
+        const context = canvas.getContext('2d');
+        context.scale(scale, scale);
+        context.drawImage(image, 0, 0, box.width, box.height);
+        URL.revokeObjectURL(url);
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            status.textContent = 'PNG export failed in this browser.';
+            return;
+          }
+          const downloadUrl = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = downloadUrl;
+          link.download = 'skeleton-mask-character-transparent.png';
+          link.click();
+          URL.revokeObjectURL(downloadUrl);
+          status.textContent = 'Downloaded a 1400 × 1800 transparent PNG.';
+        }, 'image/png');
+      };
+      image.onerror = () => {
+        URL.revokeObjectURL(url);
+        status.textContent = 'The SVG could not be rendered.';
+      };
+      image.src = url;
+    });
+  </script>
+</body>
+</html>
